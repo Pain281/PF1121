@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
+#include <string.h>
 
 void Exercise1()
 {
@@ -57,12 +59,99 @@ void Exercise2()
             }
         }
     }
-    program();
+    // program();
+}
+
+void Exercise3()
+{
+    int fibonacci(int n)
+    {
+        int count = 0;
+        int prevNum = 0;
+        int nextNum = 1;
+        int nextTerm = prevNum + nextNum;
+        printf("Fibonacci series: %d, %d, ", prevNum, nextNum);
+        while (count < n - 2)
+        {
+            prevNum = nextNum;
+            nextNum = nextTerm;
+            nextTerm = prevNum + nextNum;
+            printf("%d, ", nextTerm);
+            count++;
+        }
+    }
+    int inputNumber()
+    {
+        int n;
+        printf("Enter n: ");
+        scanf("%d", &n);
+        return n;
+    }
+    fibonacci(inputNumber());
+}
+
+void Exercise4()
+{
+    int initialProgram = 0;
+    void program(int check)
+    {
+        int select;
+        void interface()
+        {
+            printf("+----------------------------------------------------------------------------+\n");
+            printf("|                                   MENU                                     |\n");
+            printf("+----------------------------------------------------------------------------+\n");
+            printf("| 1. MENU 1                                                                  |\n");
+            printf("| 2. MENU 2                                                                  |\n");
+            printf("| 3. MENU 3                                                                  |\n");
+            printf("| 4. MENU 4                                                                  |\n");
+            printf("| 5. EXIT                                                                    |\n");
+            printf("+----------------------------------------------------------------------------+\n");
+        }
+        if (check == 0)
+        {
+            interface();
+        }
+        printf("Please choose: ");
+        scanf("%d", &select);
+        if (select > 5)
+        {
+            printf("Entered incorrectly, re-enter: ");
+            scanf("%d", &select);
+        }
+        switch (select)
+        {
+        case 1:
+            printf("Doing Menu 1...\n");
+            program(1);
+            break;
+        case 2:
+            printf("Doing Menu 2...\n");
+            program(1);
+            break;
+        case 3:
+            printf("Doing Menu 3...\n");
+            program(1);
+            break;
+        case 4:
+            printf("Doing Menu 4...\n");
+            program(1);
+            break;
+        case 5:
+            printf("Exiting...");
+            break;
+        default:
+            break;
+        }
+    }
+    program(initialProgram);
 }
 
 int main()
 {
     // Exercise1();
-    Exercise2();
+    // Exercise2();
+    // Exercise3();
+    Exercise4();
     return 0;
 }
