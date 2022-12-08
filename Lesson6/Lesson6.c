@@ -5,14 +5,16 @@
 
 void Exercise1()
 {
-    int a, n;
+    int a, result = 1, n;
     printf("Enter a: ");
     scanf("%d", &a);
     printf("Enter n: ");
     scanf("%d", &n);
-
-    int result = pow(a, n);
-    printf("%d to a power of %d has the value: %d", a, n, result);
+    for (int i = 0; i < n; i++)
+    {
+        result = result * a; 
+    }
+    printf("result = %d", result);
 }
 
 void Exercise2()
@@ -59,7 +61,7 @@ void Exercise2()
             }
         }
     }
-    // program();
+    program();
 }
 
 void Exercise3()
@@ -149,9 +151,9 @@ void Exercise4()
 
 int main()
 {
-    // Exercise1();
+    Exercise1();
     // Exercise2();
     // Exercise3();
-    Exercise4();
+    // Exercise4();
     return 0;
 }
