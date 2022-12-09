@@ -12,19 +12,13 @@ void Exercise1()
     scanf("%d", &n);
     for (int i = 0; i < n; i++)
     {
-        result = result * a; 
+        result = result * a;
     }
     printf("result = %d", result);
 }
 
 void Exercise2()
 {
-    int inputNumber()
-    {
-        int n;
-        scanf("%d", &n);
-        return n;
-    }
     int checkNumber(int num)
     {
         if (num >= 2)
@@ -44,21 +38,49 @@ void Exercise2()
     int program()
     {
         int count = 0;
-        int n;
-        printf("Enter 6 integer: \n");
-        while (count <= 5)
+        int n1, n2, n3, n4, n5, n6;
+        printf("Enter 6 integer. \n\n");
+        printf("Enter an integer: ");
+        scanf("%d", &n1);
+        printf("Enter an integer: ");
+        scanf("%d", &n2);
+        printf("Enter an integer: ");
+        scanf("%d", &n3);
+        printf("Enter an integer: ");
+        scanf("%d", &n4);
+        printf("Enter an integer: ");
+        scanf("%d", &n5);
+        printf("Enter an integer: ");
+        scanf("%d", &n6);
+
+        if (checkNumber(n1) == 1)
         {
-            count++;
-            n = inputNumber();
-            switch (checkNumber(n))
-            {
-            case 1:
-                printf("is an integer\n\n");
-                break;
-            default:
-                printf("isn't an integer\n\n");
-                break;
-            }
+            printf("%d, ", n1);
+        }
+
+        if (checkNumber(n2) == 1)
+        {
+            printf("%d, ", n2);
+        }
+
+        if (checkNumber(n3) == 1)
+        {
+            printf("%d, ", n3);
+        }
+
+        if (checkNumber(n4) == 1)
+        {
+            printf("%d, ", n4);
+        }
+
+        if (checkNumber(n5) == 1)
+        {
+            printf("%d, ", n5);
+        }
+
+        if (checkNumber(n6) == 1)
+        {
+            printf("%d", n6);
         }
     }
     program();
@@ -151,8 +173,8 @@ void Exercise4()
 
 int main()
 {
-    Exercise1();
-    // Exercise2();
+    // Exercise1();
+    Exercise2();
     // Exercise3();
     // Exercise4();
     return 0;
