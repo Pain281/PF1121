@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include <ctype.h>
-#define BUFSIZE 10
 
 void Exercise1()
 {
@@ -296,7 +295,8 @@ void Exercise10()
     int r = 3, c = 6;
     float a[r][c];
 
-    int ConvertScore(int n) {
+    int ConvertScore(int n)
+    {
         float score = 1.5 * n;
         return score;
     }
@@ -322,22 +322,27 @@ void Exercise10()
         printf("Student %d  |", j + 1);
         for (int i = 0; i < c; i++)
         {
-            printf("   %2.1f   |", a[j][i]);
+            printf("   %4.1f   |", a[j][i]);
             grade = grade + a[j][i];
         }
-        if(ConvertScore(grade) < 50) {
+        if (ConvertScore(grade) < 50)
+        {
             printf("    F     |");
         }
-        else if(ConvertScore(grade) <= 50 && ConvertScore(grade) < 65) {
+        else if (ConvertScore(grade) <= 50 && ConvertScore(grade) < 65)
+        {
             printf("    D     |");
         }
-        else if(ConvertScore(grade) <= 65 && ConvertScore(grade) < 80) {
+        else if (ConvertScore(grade) <= 65 && ConvertScore(grade) < 80)
+        {
             printf("    C     |");
         }
-        else if(ConvertScore(grade) <= 80 && ConvertScore(grade) < 90) {
+        else if (ConvertScore(grade) <= 80 && ConvertScore(grade) < 90)
+        {
             printf("    B     |");
         }
-        else {
+        else
+        {
             printf("    A     |");
         }
         printf("\n");
