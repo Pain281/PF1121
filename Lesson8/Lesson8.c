@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
+#include <conio.h>
 #define MAX 80
 
 void Exercise1()
@@ -22,28 +24,43 @@ void Exercise1()
     printf("The number of occurrences of %c is %d\n", c, count);
 }
 
+// - Chuyển ký tự đầu tiên thành chữ hoa (nếu đã là chữ thường)
+// - Mỗi từ trong chuỗi nhập chỉ được cách nhau 1 dấu cách (chỉ chừa 1
+// khoảng cách giữa hai từ)
+// - Không có khoảng trắng ở đầu và cuối chuỗi
+
+// printf("xau da chuan hoa : \"%s\"",s);
+
+// getch();
+
 void Exercise2()
 {
+    int i;
     char str[MAX];
-    char c;
-    int i = 0;
+
     printf("Enter a string: ");
     gets(str);
-
-    while (i < strlen(str))
+    while (str[0] == ' ')
     {
-        if (str[0] == ' ' || str[-1] == ' ')
-        {
-            str[0] = str[1];
-            str[-1] = '\0';
-            str[0] = str[0] - 32;
-        }
-        else
-        {
-            printf("%c", str[i]);
-        }
-        i++;
+        strcpy(&str[0], &str[1]);
     }
+    while (str[strlen(str) - 1] == ' ')
+    {
+        strcpy(&str[strlen(str) - 1], &str[strlen(str)]);
+    }
+    while(str[0] >= 'a' && str[0] <= 'z') {
+        str[0] -= 32;
+    }
+
+    for (int i = 0; i < strlen(str); i++)
+    {
+        if ((str[i] == ' ') && (str[i + 1] == ' '))
+        {
+            strcpy(&str[i], &str[i + 1]);
+            i--;
+        }
+    }
+    printf("%s", str);
 }
 
 void Exercise3()
@@ -55,9 +72,25 @@ void Exercise3()
     printf("Enter a string: ");
     gets(str);
 
-    int StrLength(char str[])
+    while (str[0] == ' ')
     {
-        return strlen(str);
+        strcpy(&str[0], &str[1]);
+    }
+    while (str[strlen(str) - 1] == ' ')
+    {
+        strcpy(&str[strlen(str) - 1], &str[strlen(str)]);
+    }
+    while(str[0] >= 'a' && str[0] <= 'z') {
+        str[0] -= 32;
+    }
+
+    for (int i = 0; i < strlen(str); i++)
+    {
+        if ((str[i] == ' ') && (str[i + 1] == ' '))
+        {
+            strcpy(&str[i], &str[i + 1]);
+            i--;
+        }
     }
 
     for (int i = 0; i < strlen(str); i++)
@@ -84,11 +117,20 @@ void Exercise3()
         }
     }
 
-    float percent = count / StrLength(str) * 100;
+    int CountChar(int countChar, char str[]) {
+        for(int i = 0; i < strlen(str); i++) {
+            if(str[i] != ' ') {
+                countChar++;
+            }
+        }
+        return countChar;
+    }
 
-    printf("The number of characters is %d\n", StrLength(str));
+    float percent = (float)count / CountChar(0, str) * 100;
+    printf("The number of characters is %d\n", CountChar(0, str));
     printf("The number of vowel characters is %d\n", count);
     printf("The percentage of vowel characters %.2f%%\n", percent);
+    printf("Standardized string: %s", str);
 }
 
 void Exercise4()
@@ -125,6 +167,43 @@ void Exercise4()
     }
 }
 
+void Exercise5()
+{
+    char strSample[] = "Dung hoc IT";
+    char str[MAX];
+    int flag = 0;
+
+    printf("\nString to compare: ");
+    for (int i = 0; i < strlen(strSample); i++)
+    {
+        printf("%c", strSample[i]);
+    }
+
+    printf("\nEnter a string to compare: ");
+    gets(str);
+
+    if (strlen(strSample) != strlen(str))
+    {
+        printf("\nDifference!\n");
+    }
+    else
+    {
+        for (int i = 0; i < strlen(str); i++)
+        {
+            if (strSample[i] == str[i])
+            {
+                printf("\nSame!\n");
+                break;
+            }
+            else
+            {
+                printf("\nDifference!\n");
+                break;
+            }
+        }
+    }
+}
+
 void Exercise6()
 {
     char str[MAX];
@@ -155,12 +234,34 @@ void Exercise6()
 void Exercise7()
 {
     char str[MAX];
-    int sc = '@', dot = '.', access = 0, scAccess = 0, dAccess = 0;
-    printf("Enter your email: ");
-    scanf("%c", &str);
+    int sc = '@', dot = '.', access = 0, scFlag = 0, dFlag = 0, flag = 0;
+    printf("\nEnter your email: ");
+    gets(str);
 
     for (int i = 0; i < strlen(str); i++)
     {
+        if (str[i] == sc)
+        {
+            access = 0;
+            flag = 1;
+            goto SKIP;
+        }
+        else if (str[i] != sc)
+        {
+            if (flag == 0)
+            {
+                if (str[i] == dot)
+                {
+                    access = 1;
+                    break;
+                }
+                else
+                {
+                    access = 0;
+                }
+            }
+        }
+    SKIP:
         if (str[i] == ' ')
         {
             access = 1;
@@ -168,11 +269,11 @@ void Exercise7()
         }
         else if (str[i] == sc)
         {
-            if (str[i + 1] >= 'a' && str[i + 1] <= 'z' || str[i - 1] >= 'a' && str[i - 1] <= 'z')
+            if (str[i + 1] >= 'a' && str[i + 1] <= 'z' && str[i - 1] >= 'a' && str[i - 1] <= 'z' || str[i + 1] >= '0' && str[i + 1] <= '9' && str[i - 1] >= 'a' && str[i - 1] <= 'z')
             {
-                scAccess++;
+                scFlag++;
             }
-            else if (scAccess > 1 || scAccess <= 0)
+            else if (scFlag > 1 || scFlag <= 0)
             {
                 access = 1;
                 break;
@@ -180,11 +281,11 @@ void Exercise7()
         }
         else if (str[i] == dot)
         {
-            if (str[i + 1] >= 'a' && str[i + 1] <= 'z' || str[i - 1] >= 'a' && str[i - 1] <= 'z')
+            if (str[i + 1] >= 'a' && str[i + 1] <= 'z' && str[i - 1] != sc)
             {
-                dAccess++;
+                dFlag++;
             }
-            else if (dAccess > 1 || dAccess <= 0)
+            else if (dFlag > 1 || dFlag <= 0)
             {
                 access = 1;
                 break;
@@ -192,13 +293,14 @@ void Exercise7()
         }
     }
 
-    if (access == 0 && scAccess == 1 && dAccess == 1)
+    if (access == 0 && scFlag == 1 && dFlag == 1)
     {
-        printf("OK");
+        printf("Success!");
     }
     else
     {
-        printf("Please re-enter your email!");
+        printf("\nPlease re-enter your email!");
+        Exercise7();
     }
 }
 
@@ -208,17 +310,8 @@ int main()
     // Exercise2();
     // Exercise3();
     // Exercise4();
+    // Exercise5();
     // Exercise6();
     Exercise7();
-    // char str1[] = "abca";
-    // int temp = 1;
-
-    // for (int i = 0; i < 4; i++)
-    // {
-    //     if (str1[0] == str1[i])
-    //     {
-    //         printf(" %c ", str1[i]);
-    //     }
-    // }
     return 0;
 }
