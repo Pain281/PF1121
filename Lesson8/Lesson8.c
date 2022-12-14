@@ -29,10 +29,6 @@ void Exercise1()
 // khoảng cách giữa hai từ)
 // - Không có khoảng trắng ở đầu và cuối chuỗi
 
-// printf("xau da chuan hoa : \"%s\"",s);
-
-// getch();
-
 void Exercise2()
 {
     int i;
@@ -278,14 +274,9 @@ void Exercise7()
                 break;
             }
         }
-        else if (prev < next)
-        {
-            access == 1;
-            break;
-        }
     }
 
-    if (access == 0 && scFlag == 1 && dFlag == 1)
+    if (access == 0 && scFlag == 1 && dFlag == 1 && prev < next)
     {
         printf("Success!");
     }
