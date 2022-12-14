@@ -48,7 +48,8 @@ void Exercise2()
     {
         strcpy(&str[strlen(str) - 1], &str[strlen(str)]);
     }
-    while(str[0] >= 'a' && str[0] <= 'z') {
+    while (str[0] >= 'a' && str[0] <= 'z')
+    {
         str[0] -= 32;
     }
 
@@ -80,7 +81,8 @@ void Exercise3()
     {
         strcpy(&str[strlen(str) - 1], &str[strlen(str)]);
     }
-    while(str[0] >= 'a' && str[0] <= 'z') {
+    while (str[0] >= 'a' && str[0] <= 'z')
+    {
         str[0] -= 32;
     }
 
@@ -117,9 +119,12 @@ void Exercise3()
         }
     }
 
-    int CountChar(int countChar, char str[]) {
-        for(int i = 0; i < strlen(str); i++) {
-            if(str[i] != ' ') {
+    int CountChar(int countChar, char str[])
+    {
+        for (int i = 0; i < strlen(str); i++)
+        {
+            if (str[i] != ' ')
+            {
                 countChar++;
             }
         }
@@ -235,33 +240,13 @@ void Exercise7()
 {
     char str[MAX];
     int sc = '@', dot = '.', access = 0, scFlag = 0, dFlag = 0, flag = 0;
+    int prev, next;
     printf("\nEnter your email: ");
     gets(str);
 
     for (int i = 0; i < strlen(str); i++)
     {
-        if (str[i] == sc)
-        {
-            access = 0;
-            flag = 1;
-            goto SKIP;
-        }
-        else if (str[i] != sc)
-        {
-            if (flag == 0)
-            {
-                if (str[i] == dot)
-                {
-                    access = 1;
-                    break;
-                }
-                else
-                {
-                    access = 0;
-                }
-            }
-        }
-    SKIP:
+
         if (str[i] == ' ')
         {
             access = 1;
@@ -269,6 +254,7 @@ void Exercise7()
         }
         else if (str[i] == sc)
         {
+            prev = i;
             if (str[i + 1] >= 'a' && str[i + 1] <= 'z' && str[i - 1] >= 'a' && str[i - 1] <= 'z' || str[i + 1] >= '0' && str[i + 1] <= '9' && str[i - 1] >= 'a' && str[i - 1] <= 'z')
             {
                 scFlag++;
@@ -281,6 +267,7 @@ void Exercise7()
         }
         else if (str[i] == dot)
         {
+            next = i;
             if (str[i + 1] >= 'a' && str[i + 1] <= 'z' && str[i - 1] != sc)
             {
                 dFlag++;
@@ -290,6 +277,11 @@ void Exercise7()
                 access = 1;
                 break;
             }
+        }
+        else if (prev < next)
+        {
+            access == 1;
+            break;
         }
     }
 
