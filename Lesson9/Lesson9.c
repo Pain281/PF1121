@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #define MAX 100
 
@@ -56,20 +57,18 @@ void Exercise2()
         }
     }
 
-    for (int i = 0; i < k; i++)
+    for (int i = 0; i < row; i++)
     {
-        tempArr[i] = a[i / col][i % col];
-    }
-
-    for (int i = 0; i < k; i++)
-    {
-        for (int j = 1; j < k; j++)
+        for (int j = 0; j < col; j++)
         {
-            if (tempArr[i] < tempArr[k])
+            for (int k = (j + 1); k < j; ++k)
             {
-                temp = tempArr[i];
-                tempArr[i] = tempArr[k];
-                tempArr[k] = temp;
+                if (a[i][j] > a[i][k])
+                {
+                    temp = a[i][j];
+                    a[i][j] = a[i][k];
+                    a[i][k] = temp;
+                }
             }
         }
     }
@@ -82,17 +81,80 @@ void Exercise2()
             printf("%d\t", a[i][j]);
         }
     }
-
-    for (int i = 0; i < col; i++)
-    {
-        printf("\n%d\t", tempArr[i]);
-    }
 }
 
 void Exercise3()
 {
+    struct student
+    {
+        char surName[20];
+        char middleName[20];
+        char name[20];
+        int id;
+    } s[50];
+
+    int option;
+    int id;
     int n;
-    char a[MAX][MAX];
+    char searchName, temp;
+    int count = 0;
+
+    void Show(struct student s[], int count)
+    {
+        printf("-----------------------------------------\n");
+        printf("| No    |      Name     |    New Name   |\n");
+        printf("-----------------------------------------\n");
+        for (int i = 0; i < count; i++)
+        {
+            printf("|%.3d\t| %s %s %s\t| %2.6s %2.6s\t|\n", s[i].id, s[i].surName, s[i].middleName, s[i].name, s[i].name, s[i].surName);
+        }
+    }
+
+    void Add(struct student s[])
+    {
+        printf("Enter number of student: ");
+        scanf("%d", &n);
+        for (int i = 0; i < n; i++)
+        {
+            fflush(stdin);
+            s[i].id = i + 1;
+            printf("\nEnter name of student %d.\n", i + 1);
+            printf("Enter surname: ");
+            scanf("%s", &s[i].surName);
+            printf("Enter middle name: ");
+            scanf("%s", &s[i].middleName);
+            printf("Enter name: ");
+            scanf("%s", &s[i].name);
+            count++;
+        }
+        Show(s, count);
+    }
+
+    // void Sort(struct student s[])
+    // {
+    //     for (int i = 0; i < count; i++)
+    //     {
+    //         for (int j = 1; j < count; j++)
+    //         {
+    //             if (s[i].name < s[j].name)
+    //             {
+    //             }
+    //         }
+    //     }
+    //     Show(s, count);
+    // }
+
+    // void Search(struct student s[])
+    // {
+    //     for (int i = 0; i < count; i++)
+    //     {
+    //         if (s[i].name == searchName)
+    //         {
+    //             printf("%s", s[i].name);
+    //         }
+    //     }
+    //     Show(S, )
+    // }
 
     printf("==========================\n");
     printf("           MENU           \n");
@@ -100,41 +162,40 @@ void Exercise3()
     printf("1. Add Student Name\n");
     printf("2. Search Student Name\n");
     printf("3. Sort Student Names\n");
-    printf("4. Add Student Name\n");
+    printf("4. Normalize Student Name\n");
+    printf("5. Show All Students\n");
+    printf("6. Exit\n");
     printf("==========================\n");
     printf("Choose Option: ");
-    scanf("%d", &n);
+    scanf("%d", &option);
 
-    switch (n)
+    switch (option)
     {
     case 1:
-        printf("Enter number of student you want to add: ");
-        scanf("%d", &n);
-
-        for (int i = 0; i < n; i++)
-        {
-            printf("Enter student name: ");
-            gets(a[i][MAX]);
-        }
-        for (int i = 0; i < n; i++)
-        {
-            puts(a[i][MAX]);
-        }
+        Add(s);
+        Exercise3();
         break;
     case 2:
-        /* code */
+        // printf("Enter name you want to search: ");
+        // scanf("%s", searchName);
+        // Search(s, searchName);
         break;
     case 3:
-        /* code */
+        // Sort(s, count);
         break;
     case 4:
-        /* code */
+
         break;
     case 5:
-        /* code */
+        // Show(s, count);
+        Exercise3();
+        break;
+    case 6:
         break;
 
     default:
+        printf("Enter Number only from 1-6 \n");
+        Exercise3();
         break;
     }
     // void AddStudentName()
@@ -145,7 +206,7 @@ void Exercise3()
 int main()
 {
     // Exercise1();
-    // Exercise2();
-    Exercise3();
+    Exercise2();
+    // Exercise3();
     return 0;
 }
