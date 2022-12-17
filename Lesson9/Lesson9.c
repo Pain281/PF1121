@@ -91,8 +91,18 @@ void Exercise2()
 
 void Exercise3()
 {
+
+    typedef struct Student
+    {
+        char name[MAX];
+        int id;
+    } Student;
+
     int n;
-    char a[MAX][MAX];
+    FILE *file = fopen("input.txt", "r");
+    // char a[MAX][MAX];
+
+    struct Student StudentsAPI[MAX];
 
     printf("==========================\n");
     printf("           MENU           \n");
@@ -108,17 +118,21 @@ void Exercise3()
     switch (n)
     {
     case 1:
+        if (file == NULL)
+        {
+            return 1;
+        }
         printf("Enter number of student you want to add: ");
         scanf("%d", &n);
 
         for (int i = 0; i < n; i++)
         {
             printf("Enter student name: ");
-            gets(a[i][MAX]);
+            gets("%s", &StudentsAPI->name[i]);
         }
         for (int i = 0; i < n; i++)
         {
-            puts(a[i][MAX]);
+            printf("Student name: %s", StudentsAPI->name[i]);
         }
         break;
     case 2:
