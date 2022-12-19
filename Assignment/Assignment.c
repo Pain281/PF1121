@@ -1,19 +1,73 @@
 #include <stdio.h>
+#define MAX 100
 
-struct Contact
+struct contactInfo
 {
-    char
-        firstName[10],
-        middleName[10],
-        lastName[10],
-        company[10],
-        phone[10],
-        email[20],
-        address[20],
-        birthday[10],
-        website[20],
-        note[20];
+    int id;
+    char name[30];
+    char company[20];
+    char phone[10];
+    char email[20];
+    char address[20];
+    char birthday[10];
+    char website[20];
+    char note[20];
 };
+
+int MainMenu();
+
+int SearchContact();
+
+int AddContact();
+
+int main()
+{
+    FILE *f;
+    char *a[MAX];
+    int count = 0;
+    struct contactInfo contact;
+
+    switch (MainMenu())
+    {
+    case 1:
+        SearchContact();
+        break;
+    case 2:
+        a[count] = (char *)malloc(51);
+
+        fflush(stdin);
+        f = fopen("contact.txt", "a");
+        printf(" CREATE NEW CONTACT\n");
+        printf("========================================\n");
+        printf(" \nName: ");
+        scanf("%s", &contact.name);
+        printf(" \nCompany: ");
+        scanf("%s", &contact.company);
+        printf(" \nPhone: ");
+        scanf("%s", &contact.phone);
+        printf(" \nEmail: ");
+        scanf("%s", &contact.email);
+        printf(" \nAddress: ");
+        scanf("%s", &contact.address);
+        printf(" \nBirthday: ");
+        scanf("%s", &contact.birthday);
+        printf(" \nWebsite: ");
+        scanf("%s", &contact.website);
+        printf(" \nNote: ");
+        scanf("%s", &contact.note);
+        printf("========================================\n");
+        main();
+        
+        break;
+    case 3:
+        break;
+
+    default:
+        break;
+    }
+
+    return 0;
+}
 
 int MainMenu()
 {
@@ -46,38 +100,4 @@ int SearchContact()
 
 int AddContact()
 {
-    printf(" CREATE NEW CONTACT\n");
-    printf("========================================\n");
-    printf(" First Name:  \n");
-    printf(" Middle Name: \n");
-    printf(" Last Name:   \n");
-    printf(" Company:     \n");
-    printf(" Phone:       \n");
-    printf(" Email:       \n");
-    printf(" Address:     \n");
-    printf(" Birthday:    \n");
-    printf(" Website:     \n");
-    printf(" Note:        \n");
-    printf("========================================\n");
-}
-
-int main()
-{
-    switch (MainMenu())
-    {
-    case 1:
-        SearchContact();
-        break;
-    case 2:
-        AddContact();
-        break;
-    case 3:
-        printf("enter");
-        break;
-
-    default:
-        break;
-    }
-
-    return 0;
 }
