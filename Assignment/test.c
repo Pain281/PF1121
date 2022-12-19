@@ -32,19 +32,17 @@ int main()
 
     // fwrite(&a, 1, sizeof(a), fp);
 
-    
     // printf("%s", b);
 
     // fclose(fp);
 
-   FILE *fp;
-   char buff[255];
+    //    FILE *fp;
+    //    char buff[255];
+    //    fp = fopen("contact.txt", "r");
+    //    fgets(buff, sizeof(buff), fp);
+    //    printf("1: %s\n", buff);
 
-   fp = fopen("contact.txt", "r");
-   fgets(buff, sizeof(buff), fp);
-   printf("1: %s\n", buff);
-
-   fclose(fp);
+    //    fclose(fp);
 
     return 0;
 }
