@@ -85,6 +85,7 @@ void Exercise2()
 
 void Exercise3()
 {
+<<<<<<< HEAD
     struct student
     {
         char surName[20];
@@ -155,6 +156,20 @@ void Exercise3()
     //     }
     //     Show(S, )
     // }
+=======
+
+    typedef struct Student
+    {
+        char name[MAX];
+        int id;
+    } Student;
+
+    int n;
+    FILE *file = fopen("input.txt", "r");
+    // char a[MAX][MAX];
+
+    struct Student StudentsAPI[MAX];
+>>>>>>> 523e30413554207c7ab411d1f289ff11f0d0bc32
 
     printf("==========================\n");
     printf("           MENU           \n");
@@ -172,8 +187,27 @@ void Exercise3()
     switch (option)
     {
     case 1:
+<<<<<<< HEAD
         Add(s);
         Exercise3();
+=======
+        if (file == NULL)
+        {
+            return 1;
+        }
+        printf("Enter number of student you want to add: ");
+        scanf("%d", &n);
+
+        for (int i = 0; i < n; i++)
+        {
+            printf("Enter student name: ");
+            gets("%s", &StudentsAPI->name[i]);
+        }
+        for (int i = 0; i < n; i++)
+        {
+            printf("Student name: %s", StudentsAPI->name[i]);
+        }
+>>>>>>> 523e30413554207c7ab411d1f289ff11f0d0bc32
         break;
     case 2:
         // printf("Enter name you want to search: ");
