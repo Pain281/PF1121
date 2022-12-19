@@ -118,21 +118,15 @@ void Exercise3()
     switch (n)
     {
     case 1:
-        if (file == NULL)
-        {
-            return 1;
-        }
         printf("Enter number of student you want to add: ");
         scanf("%d", &n);
 
         for (int i = 0; i < n; i++)
         {
             printf("Enter student name: ");
-            gets("%s", &StudentsAPI->name[i]);
         }
         for (int i = 0; i < n; i++)
         {
-            printf("Student name: %s", StudentsAPI->name[i]);
         }
         break;
     case 2:
