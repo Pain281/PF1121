@@ -31,6 +31,7 @@ void Line();
 
 int main()
 {
+
     // FILE *fp;
     int count = 0, choice, detailChoice, temp;
     ContactInfo *a[MAX];
@@ -46,7 +47,7 @@ int main()
             break;
         case 2:
             fflush(stdin);
-            a[count] = (ContactInfo *)malloc(8 * sizeof(a));
+            a[count] = (ContactInfo *)malloc(8 * count);
             printf(" CREATE NEW CONTACT\n");
             Line();
             printf(" \nName: ");
@@ -83,6 +84,8 @@ int main()
             GetAll(count, a);
             printf("INPUT CONTACT NO TO VIEWS DETAILS OR INPUT 0 TO BACK MAIN MENU: ");
             scanf("%d", &no);
+            if (no == 0)
+                break;
             no -= 1;
             Line();
             printf(" CONTACT DETAILS\n");
@@ -91,7 +94,7 @@ int main()
             printf("Company:  %s\n", a[no]->company);
             printf("Phone:    %s\n", a[no]->phone);
             printf("Email:    %s\n", a[no]->email);
-            printf("Address:  %s\n", a[no]->address);
+            printf("Address:   %s\n", a[no]->address);
             printf("Birthday: %s\n", a[no]->birthday);
             printf("Website:  %s\n", a[no]->website);
             printf("Note:     %s\n", a[no]->note);
@@ -131,7 +134,6 @@ int main()
                 fflush(stdin);
                 gets(a[no]->note);
                 Line();
-                main();
                 break;
             case 3:
 
@@ -140,7 +142,6 @@ int main()
 
                 break;
             case 5:
-                main();
                 break;
             default:
                 break;
@@ -148,7 +149,6 @@ int main()
             Line();
             break;
         case 5:
-
             break;
         case 6:
             exit(0);
