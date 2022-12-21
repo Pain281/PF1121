@@ -7,6 +7,8 @@ int something(int *a, int *b)
     printf("%d", *b);
 }
 
+int backtr
+
 int main()
 {
     int a = 2, b = 3;
