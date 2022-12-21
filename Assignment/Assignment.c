@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX 100
+#define FILE_NAME "contact.txt"
 
 typedef struct ContactInfo
 {
@@ -19,7 +20,7 @@ int MainMenu();
 
 int SearchContact();
 
-int AddContact(int n, ContactInfo *a[]);
+int AddContact(int *count, ContactInfo *a[]);
 
 void GetAll(int n, ContactInfo *a[]);
 
@@ -31,11 +32,11 @@ void Line();
 
 int main()
 {
-
-    // FILE *fp;
+    FILE *fp;
     int count = 0, choice, detailChoice, temp;
     ContactInfo *a[MAX];
     ContactInfo contact;
+
     int no;
     do
     {
@@ -46,36 +47,7 @@ int main()
             SearchContact();
             break;
         case 2:
-            fflush(stdin);
-            a[count] = (ContactInfo *)malloc(8 * count);
-            printf(" CREATE NEW CONTACT\n");
-            Line();
-            printf(" \nName: ");
-            gets(a[count]->name);
-            printf(" \nCompany: ");
-            fflush(stdin);
-            gets(a[count]->company);
-            printf(" \nPhone: ");
-            fflush(stdin);
-            gets(a[count]->phone);
-            printf(" \nEmail: ");
-            fflush(stdin);
-            gets(a[count]->email);
-            printf(" \nAddress: ");
-            fflush(stdin);
-            gets(a[count]->address);
-            printf(" \nBirthday: ");
-            fflush(stdin);
-            gets(a[count]->birthday);
-            printf(" \nWebsite: ");
-            fflush(stdin);
-            gets(a[count]->website);
-            printf(" \nNote: ");
-            fflush(stdin);
-            gets(a[count]->note);
-            a[count]->status = 0;
-            printf("\nSaving... Success!\n\n");
-            count++;
+            AddContact(&count, a);
             break;
         case 3:
             printf("Success!");
@@ -205,12 +177,16 @@ int SearchContact()
     return 0;
 }
 
-int AddContact(int n, ContactInfo *a[])
+int AddContact(int *count, ContactInfo *a[])
 {
+    int n = *count;
+    FILE *fp;
+    fp = fopen(FILE_NAME, "w+");
+
     fflush(stdin);
-    a[n] = (ContactInfo *)malloc(8 * sizeof(*a));
+    a[n] = (ContactInfo *)malloc(sizeof(ContactInfo));
     printf(" CREATE NEW CONTACT\n");
-    printf("========================================\n");
+    Line();
     printf(" \nName: ");
     gets(a[n]->name);
     printf(" \nCompany: ");
@@ -234,7 +210,16 @@ int AddContact(int n, ContactInfo *a[])
     printf(" \nNote: ");
     fflush(stdin);
     gets(a[n]->note);
+    a[n]->status = 0;
     printf("\nSaving... Success!\n\n");
+    n++;
+    *count = n;
+    for (int i = 0; i < n; i++)
+    {
+        fprintf(fp, "Name: %s\n", a[i]->name);
+        fprintf(fp, "Address: %s\n", a[i]->address);
+    }
+    fclose(fp);
 }
 
 void GetAll(int n, ContactInfo *a[])
@@ -258,7 +243,7 @@ void Detail(int no, ContactInfo *a[])
     printf("Company:  %s\n", a[no]->company);
     printf("Phone:    %s\n", a[no]->phone);
     printf("Email:    %s\n", a[no]->email);
-    printf("Address:  %s\n", a[no]->address);
+    printf("Address: %s\n", a[no]->address);
     printf("Birthday: %s\n", a[no]->birthday);
     printf("Website:  %s\n", a[no]->website);
     printf("Note:     %s\n", a[no]->note);

@@ -1,48 +1,47 @@
-#include <stdio.h>
-#define MAX 100
+// #include <stdio.h>
+// #define MAX 100
 
-struct contactInfo
-{
-    char *name;
-    char *phone;
-};
+// struct contactInfo
+// {
+//     char *name;
+//     char *phone;
+// };
 
-int main()
-{
-    // struct contactInfo a[MAX];
-    // struct contactInfo contact;
+// int main()
+// {
+//     // struct contactInfo a[MAX];
+//     // struct contactInfo contact;
 
-    // a[0].name = "vdw dwdwa na";
-    // a[0].phone = "0932323242";
+//     // a[0].name = "vdw dwdwa na";
+//     // a[0].phone = "0932323242";
 
-    // a[1].name = "ferfewr f";
-    // a[1].phone = "9043043433";
+//     // a[1].name = "ferfewr f";
+//     // a[1].phone = "9043043433";
 
-    // for (int i = 0; i < 2; i++)
-    // {
-    //     printf("%s", a[i].name);
-    // }
+//     // for (int i = 0; i < 2; i++)
+//     // {
+//     //     printf("%s", a[i].name);
+//     // }
 
-    // FILE *fp, *ft;
+//     // FILE *fp, *ft;
 
-    // char a[] = "hello world!";
-    // char b[MAX];
+//     // char a[] = "hello world!";
+//     // char b[MAX];
 
-    // fp = fopen("contact.txt", "w+");
+//     // fp = fopen("contact.txt", "w+");
 
-    // fwrite(&a, 1, sizeof(a), fp);
+//     // fwrite(&a, 1, sizeof(a), fp);
 
-    // printf("%s", b);
+//     // printf("%s", b);
 
-    // fclose(fp);
+//     // fclose(fp);
 
-    //    FILE *fp;
-    //    char buff[255];
-    //    fp = fopen("contact.txt", "r");
-    //    fgets(buff, sizeof(buff), fp);
-    //    printf("1: %s\n", buff);
+//     //    FILE *fp;
+//     //    char buff[255];
+//     //    fp = fopen("contact.txt", "r");
+//     //    fgets(buff, sizeof(buff), fp);
+//     //    printf("1: %s\n", buff);
+//     //    fclose(fp);
 
-    //    fclose(fp);
-
-    return 0;
-}
+//     return 0;
+// }
